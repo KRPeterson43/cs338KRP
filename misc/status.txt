@@ -2,4 +2,4 @@ Kaitlyn Peterson
 
 
 
-Status of Kali / plan
+I plan to use Kali on my personal computer. I have installed Kali according to the instructions for Intel Macs and am able to log in.
