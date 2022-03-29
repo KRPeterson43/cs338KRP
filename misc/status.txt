@@ -3,4 +3,4 @@ Kaitlyn Peterson
 
 
 I plan to use Kali on my personal computer. I have installed Kali according to the instructions for Intel Macs and am able to log in; everything is set up and looks good. 
-I also looked through the instructions on how to use Kali on the web computers and feel confident that I will be able to use the program there if ever necessary.
+I also looked through the instructions on how to use Kali on the Olin lab computers and feel confident that I will be able to use the program there if ever necessary.
