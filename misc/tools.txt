@@ -16,26 +16,26 @@ https://smallbusiness.chron.com/hostname-ip-address-47400.html
 scp [filename] [username]@[source host]:[destination]
 https://phoenixnap.com/kb/linux-scp-command
 
-5. How can you tell whether there's a process listening on a given port (e.g. port 80 or port 22) on a given host?
+5. 
 netstat -ltnp | grep -w ':[port number]'
 https://www.tecmint.com/find-out-which-process-listening-on-a-particular-port/
 
-6. How can you tell which ports have processes listening on them on a given host?
+6.
 netstat -an | grep LISTEN
 citations: https://linuxize.com/post/check-listening-ports-linux/
 (also office hours)
 
-7. How can you retrieve and save a given web page (say https://google.com/ or https://carleton.edu/) in a file on your system?
+7. 
 curl --request GET "[link]" --output [filename]
 http://www.compciv.org/recipes/cli/downloading-with-curl/
 
-8. How can you view the HTTP headers sent back from a specified web server when you request one of its pages?
+8. 
 Use the same command (curl --request GET "[link]" --output [filename]) but specify -IL.
 AKA curl -IL --request GET "[link]" --output [filename]
 The HTTP header sent TO the web server is first (ex: HTTP/2), followed by the HTTP header that is SENT BACK (ex:200).
 https://linuxize.com/post/curl-command-examples/
 
-9. How can you view the HTTP headers that your computer sends to the web server when you do the tasks in the previous two questions?
+9. 
 Again: curl -IL --request GET "[link]" --output [filename]
 The HTTP header sent TO the web server is first (ex: HTTP/2), followed by the HTTP header that is SENT BACK (ex:200).
 https://linuxize.com/post/curl-command-examples/
