@@ -1,4 +1,5 @@
 Kaitlyn Peterson
+Worked with Mary Blanchard
 
 1.
 My computer's IP Address on Kali is 172.217.2.36 I accessed this using the command: ifconfig. The WiFi connection is labeled with 'inet', while the ethernet connection would be labeled differently, such as with 'ether'.
