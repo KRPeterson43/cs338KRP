@@ -1,0 +1,60 @@
+Mary Blanchard and Kaitlyn Peterson
+
+
+===== DAYTIME =====
+
+1. Identify the parts of the TCP 3-way handshake by listing the frame summaries of the relevant frames. 
+1		172.16.58.129	132.163.96.4	TCP		54704 → 13 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM=1 TSval=1116593180 TSecr=0 WS=128
+2		132.163.96.4	172.16.58.129	TCP		13 → 54704 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0 MSS=1460
+3		172.16.58.129	132.163.96.4	TCP		54704 → 13 [ACK] Seq=1 Ack=1 Win=64240 Len=0
+
+2. What port number does the client (i.e. nc on your Kali computer) use for this interaction? And why does the client need a port?
+The client uses port 54704. The client needs a port to identify itself so that the server knows what port to send information back to.
+
+3. What frame contains the actual date and time? 
+4		132.163.96.4	172.16.58.129	DAYTIME	DAYTIME Response
+
+4. What is the full content (not counting the Ethernet, IP, and TCP headers) of the frame? What do each of the pieces of the frame content represent? (Most of the frame content is things like the year, month, day, hour, etc., but there's a little more info, too.)
+
+\n59672 22-04-03 17:50:02 50 0 0  64.8 UTC(NIST) * \n
+
+59672 is the Modified Julian Date. 22-04-03 represents year-month-day and 17:50:02 represents hour:minute:second. 50 is a code that represents whether we are on daylight savings time or standard time; 50 signifies that we are on DST. The first 0 indicates that there will not be a leap second this month.
+The second 0 represents the health of the server; 0 indicates that the server is healthy. 64.8 is the milisecond advancement, meaning that 64.8 miliseconds were added to account for network delays. 
+The UTC(NIST) label represents that we are recieving Coordinated Universal Time from the National Institute of Standards and Technology. Finally, the * is a marker that signifies that the time sent by the server is the arrival time of the marker. 
+
+5. What does [SYN] mean?
+SYN is short for synchronize. It signifies that the source wants to initiate a connection.
+
+6. What does [ACK] mean?
+ACK stands for acknowledge. This is a response sent to acknowledge that the previous message was received.
+
+7. What does [FIN] mean?
+FIN is short for finish. This is sent to signify that the source wants to end the connection.
+
+8. Which entity (the nc client or the daytime server) initiated the closing of the TCP connection? How can you tell?
+The nc client initiated the closing of the TCP connection. We can tell because the first frame with the label FIN was sent from our IP address to the server.
+We're pretty sure that the daytime server is supposed to be the one that initiates the closing, but it looks like we're missing two of the frames that Jeff has in the example video. We tried the same server and a different one with the same results. Here's everything that we see after the daytime response:
+
+4	0.050758636	132.163.96.4	172.16.58.129	DAYTIME	105	DAYTIME Response
+5	0.050994329	172.16.58.129	132.163.96.4	TCP	54	54704 → 13 [FIN, ACK] Seq=1 Ack=53 Win=64188 Len=0
+6	0.051428798	132.163.96.4	172.16.58.129	TCP	60	13 → 54704 [ACK] Seq=53 Ack=2 Win=64239 Len=0
+
+
+===== HTTP =====
+
+1. How many TCP connections were opened?
+Two TCP connections were opened. We can tell because there were two TCP handshakes initialized in the first six frames; each began with the [SYN] marker.
+
+2. Can you tell where my homepage (index.html) was requested? (If not, why not? If so, include frame summaries and/or other info that supports your answer.)
+Yes; here is the frame summary in which it is requested. The main indicator is the GET request.
+7 172.16.58.129 45.79.89.123 HTTP GET /index.html HTTP/1.1
+
+3. Can you tell where my photograph (jeff_square_head.jpg) was requested? (If not, why not? If so, include frame summaries and/or other info that supports your answer.)
+Yes, in the frame summary below, again with a GET request.
+11 172.16.58.129 45.79.89.123 HTTP GET /jeff_square_head.jpg HTTP/1.1
+
+
+
+===== QUESTIONS =====
+What can the message length in bytes tell us about the packet / why is it important?
+Why do we need to explicitly keep TCP connections alive, especially for a static website?
