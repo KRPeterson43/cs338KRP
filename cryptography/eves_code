@@ -7,8 +7,6 @@ while (remainder != 57):
     print(a, remainder)
   a = a + 1
 
-print((11^50)%59)
-
 b = 1
 remainder = 1
 while (remainder != 44):
@@ -18,11 +16,14 @@ while (remainder != 44):
     print(b, remainder)
   b = b + 1
 
-print((11^39)%59)
-
 k = (44**36)%59
 j = (57**15)%59
 print(k, j)
+
+
+
+
+
 
 def isPrime(k):
   for i in range(2, int(k/2)+1):
@@ -36,7 +37,6 @@ for p in range(5562):
     if ((q%1==0) and isPrime(q)):
       print("p:", p, "q:", q)
 
-66*82
 
 i=1
 while (True):
